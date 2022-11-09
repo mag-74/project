@@ -1,31 +1,32 @@
-﻿// Задачка по сортировке массива по возрастанию
+﻿// Task 68
+// Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа M и N.
 
-int[] Array = { 5, 8, 6, 4, 8, 15, 65, 2555, 12, 4586 };
 
-void SelectionSort(int[] Array);
+Console.Clear();
+
+int A(int n, int m) // функция с двойной рекурсией
 {
-    for (int i = 0; i < Array.Length - 1; i++)
+    if (n == 0) // 
     {
-        int maxPosition = i;
-        for (int j = i + 1; j < Array.Length; j++)
+        return m + 1;
+    }
+    else
+    {
+        if ((n != 0) && (m == 0))
         {
-            if (Array[j] < Array[maxPosition])
-            {
-                maxPosition = j;
-            }
+            return A(n - 1, 1);
         }
-        int temp = Array[i];
-        Array[i] = Array[maxPosition];
-        Array[maxPosition] = temp;
+        else
+        {
+            return A(n - 1, A(n, m - 1));
+        }
     }
 }
 
-void printArray(int[] Array)
-{
-    int count = Array.Length;
-    for (int i = 0; i < count; i++)
-    {
-        Console.Write($"{Array[i]} ");
-    }
-    Console.WriteLine();
-}
+Console.Write("Результат функции Аккермана: ");
+//(n, m)
+//(0, 0)
+//(0, 4)
+//(4, 0)
+//(3, 2)
+Console.WriteLine(A(2, 3)); // Даны два числа в формате integer (три комбинации для теста)
